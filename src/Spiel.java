@@ -12,20 +12,21 @@ import javax.swing.JTextField;
 import javax.swing.Timer;
 
 
-public class Spiel {
+public class Spiel implements ActionListener{
 	//die folgenden Variabeln sind ausserhalb der Funktionen damit alle Funktionen darauf zugreifen und sie ändern können.
 	String[] questions = {
-			"Wie heisst der Churer Hausberg?",
-			"Welches sind die grössten Events von Chur?",
-			"Stimmt es dass in Chur eine Polizeistunde herrscht?"
-			};
+						"Wie heisst der Churer Hausberg?",
+						"Welches sind die grössten Events von Chur?",
+						"Stimmt es dass in Chur eine Polizeistunde herrscht?"
+						};
+	
 	String[][] antwortmöglichkeiten = {
 			{"Brambrüesch", "Haldensteiner Calanda"},
 			{"BigAir,Schlagerparade", "Fasnacht, Churer Fest"},
 			{"Ja", "Nein"}
 			};
 	
-	char[] antworten = {
+	char[] answers = {
 			'A',
 			'A',
 			'B'
@@ -50,6 +51,18 @@ public class Spiel {
 	JLabel secondsLeft = new JLabel();
 	JTextField numberRight = new JTextField();
 	JTextField percentage = new JTextField();
+	
+	// Timer, der runterzählt
+	Timer timer = new Timer(1000, new ActionListener() {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			seconds--;
+			secondsLeft.setText(String.valueOf(seconds));
+			if(seconds<=0) {
+				displayAnswer();
+			}
+		}	
+	});
 	
 	public Spiel() {
 		//Frame
@@ -83,12 +96,14 @@ public class Spiel {
 		buttonA.setFont(new Font("Arial", Font.PLAIN, 25));
 		buttonA.setFocusable(false);
 		buttonA.setText("A");
+		buttonA.addActionListener(this);	
 		//buttonA.addActionListener(this); nach tutorial 26.36 sollte es funktionieren erhalte aber Fehlermeldung
 		
 		buttonB.setBounds(0,200,100,100);
 		buttonB.setFont(new Font("Arial", Font.PLAIN, 25));
 		buttonB.setFocusable(false);
 		buttonB.setText("B");
+		buttonB.addActionListener(this);
 		//buttonB.addActionListener(this);
 		
 		//Antworttext
@@ -122,19 +137,18 @@ public class Spiel {
 		numberRight.setBounds(225,225,200,100);
 		numberRight.setBackground(new Color(25,25,25));
 		numberRight.setForeground(new Color(25,255,0));
-		numberRight.setFont(new Font("Arial", Font.BOLD, 20));
+		numberRight.setFont(new Font("Arial", Font.BOLD, 50));
 		numberRight.setBorder(BorderFactory.createBevelBorder(1));
 		numberRight.setHorizontalAlignment(JTextField.CENTER);
 		numberRight.setEditable(false);
 		
-		percentage.setBounds(255,225,200,100);
+		percentage.setBounds(225,325,200,100);
 		percentage.setBackground(new Color(25,25,25));
 		percentage.setForeground(new Color(25,255,0));
-		percentage.setFont(new Font("Arial", Font.BOLD, 20));
+		percentage.setFont(new Font("Arial", Font.BOLD, 50));
 		percentage.setBorder(BorderFactory.createBevelBorder(1));
 		percentage.setHorizontalAlignment(JTextField.CENTER);
 		percentage.setEditable(false);
-		
 		
 		frame.add(timeLabel);
 		frame.add(secondsLeft); //weiter bei 35.04 https://www.youtube.com/watch?v=wk1Fbqh7Tew
@@ -158,23 +172,23 @@ public class Spiel {
 			textarea.setText(questions[index]);
 			answerLabelA.setText(antwortmöglichkeiten[index][0]);
 			answerLabelB.setText(antwortmöglichkeiten[index][1]);
-
+			timer.start();
 		}
 	}
 	
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) { //when someone presses the button (answer)
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		
 		if(e.getSource()==buttonA) {
 			answer = 'A';
-			if(answer == antworten[index]) {
+			if(answer == answers[index]) {
 				correct_guesses++;
 			}
 		}
 		if(e.getSource()==buttonB) {
 			answer = 'B';
-			if(answer == antworten[index]) {
+			if(answer == answers[index]) {
 				correct_guesses++;
 			}
 		}
@@ -182,14 +196,18 @@ public class Spiel {
 		
 	}
 	public void displayAnswer() {
+		// wenn Timer bei 0 = falsch
+		timer.stop();
+		
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		
-		if(antworten[index] != 'A');
+		if(answers[index] != 'A')
 		answerLabelA.setForeground(new Color(255,0,0));
-		if(antworten[index] != 'B');
+		if(answers[index] != 'B')
 		answerLabelB.setForeground(new Color(255,0,0));	
 		
+		// Timer, wartet nach Antwort 3sek, bis nächste Aufgabe kommt bzw. Schriftfarbe sich wieder ändert
 		Timer pause = new Timer(3000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -229,4 +247,4 @@ public class Spiel {
 	}
 }
 
-//Timer ? https://www.youtube.com/watch?v=wk1Fbqh7Tew Erklärung bei 1.02.00
+//Youtube-Channel -> https://www.youtube.com/watch?v=wk1Fbqh7Tew
