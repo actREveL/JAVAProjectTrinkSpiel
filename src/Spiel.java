@@ -79,7 +79,7 @@ public class Spiel implements ActionListener{
 	public Spiel() {
 		//Frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(1200,1200);
+		frame.setSize(1200,800);
 		frame.getContentPane().setBackground(new Color(185,219,232));//Hintergrund noch ändern?
 		frame.setLayout(null);
 		frame.setResizable(false);
@@ -130,19 +130,19 @@ public class Spiel implements ActionListener{
 		//answerLabelB.setForeground(new Color(25,255,0));
 		//answerLabelB.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		secondsLeft.setBounds(900,900,300,300);
+		secondsLeft.setBounds(1000,600,200,200);
 		secondsLeft.setBackground(new Color(80,94,99));
 		secondsLeft.setForeground(new Color(255,0,0));
-		secondsLeft.setFont(new Font("Arial", Font.BOLD, 80));
+		secondsLeft.setFont(new Font("Arial", Font.BOLD, 60));
 		secondsLeft.setBorder(BorderFactory.createBevelBorder(1));
 		secondsLeft.setOpaque(true);
 		secondsLeft.setHorizontalAlignment(JTextField.CENTER);
 		secondsLeft.setText(String.valueOf(seconds));
 		
-		timeLabel.setBounds(900,870,300,30);
+		timeLabel.setBounds(1000,570,200,30);
 		timeLabel.setBackground(new Color (50,50,50));
 		timeLabel.setForeground(new Color (255,0,0));
-		timeLabel.setFont(new Font("Arial", Font.BOLD, 30));
+		timeLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		timeLabel.setHorizontalAlignment(JTextField.CENTER);
 		timeLabel.setText("Mach vorwärts \uD83E\uDD21");
 		
