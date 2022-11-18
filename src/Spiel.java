@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -42,11 +43,13 @@ public class Spiel implements ActionListener{
 	
 	JFrame frame = new JFrame();
 	JTextField textfield = new JTextField();
+	JTextField textfieldQuestion = new JTextField();
 	JTextArea textarea = new JTextArea();
 	JButton buttonA = new JButton();
 	JButton buttonB = new JButton();
 	JLabel answerLabelA = new JLabel();
 	JLabel answerLabelB = new JLabel();
+	JTextField answerFeedback = new JTextField();
 	JLabel timeLabel = new JLabel();
 	JLabel secondsLeft = new JLabel();
 	JTextField numberRight = new JTextField();
@@ -67,97 +70,106 @@ public class Spiel implements ActionListener{
 	public Spiel() {
 		//Frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(650,650);
-		frame.getContentPane().setBackground(new Color(245,245,220));//Hintergrund noch ändern?
+		frame.setSize(1200,1200);
+		frame.getContentPane().setBackground(new Color(185,219,232));//Hintergrund noch ändern?
 		frame.setLayout(null);
 		frame.setResizable(false);
 		
 		//Zahl der Frage: Textfield
-		textfield.setBounds(0,0,650,50);
-		textfield.setBackground(new Color(50,50,50));//Hintergrund von Textfeld
-		textfield.setForeground(new Color(25,255,0));//Schrift von Textfeld?
-		textfield.setFont(new Font("Arial", Font.BOLD, 30));
+		textfield.setBounds(0,0,1200,100);
+		textfield.setBackground(new Color(80,94,99));
+		textfield.setForeground(new Color(185,219,232));
+		textfield.setFont(new Font("Arial", Font.BOLD, 40));
 		textfield.setBorder(BorderFactory.createBevelBorder(1));
 		textfield.setHorizontalAlignment(JTextField.CENTER);
 		textfield.setEditable(false);
 		
 		// Fragetext
-		textarea.setBounds(0,50,650,50);
+		textarea.setBounds(100,150,1000,100);
 		textarea.setLineWrap(true);
 		textarea.setWrapStyleWord(true);
-		textarea.setBackground(new Color(50,50,50));//Hintergrund von Textfeld
-		textarea.setForeground(new Color(25,255,0));//Schrift von Textfeld?
-		textarea.setFont(new Font("Arial", Font.PLAIN, 25));
-		textarea.setBorder(BorderFactory.createBevelBorder(1));
+		textarea.setBackground(new Color(88,152,176));
+		textarea.setForeground(new Color(0,0,0));
+		textarea.setFont(new Font("Arial", Font.BOLD, 35));
+		textarea.setBorder(BorderFactory.createEmptyBorder());
 		textarea.setEditable(false);
 		
+		textfieldQuestion.setBounds(0,100,1200,160);
+		textfieldQuestion.setBorder(null);
+		textfieldQuestion.setBackground(new Color(88,152,176));
+		
 		//Button
-		buttonA.setBounds(125,200,200,100);
+		buttonA.setBounds(100,275,1000,100);
 		buttonA.setFont(new Font("Arial", Font.PLAIN, 25));
 		buttonA.setFocusable(false);
-		buttonA.setText("A");
 		buttonA.addActionListener(this);	
-		//buttonA.addActionListener(this); nach tutorial 26.36 sollte es funktionieren erhalte aber Fehlermeldung
+
 		
-		buttonB.setBounds(325,200,200,100);
+		buttonB.setBounds(100,375,1000,100);
 		buttonB.setFont(new Font("Arial", Font.PLAIN, 25));
 		buttonB.setFocusable(false);
-		buttonB.setText("B");
 		buttonB.addActionListener(this);
-		//buttonB.addActionListener(this);
 		
 		//Antworttext
-		answerLabelA.setBounds(125,100,500,100);
-		answerLabelA.setBackground(new Color(50,50,50));
-		answerLabelA.setForeground(new Color(25,255,0));
-		answerLabelA.setFont(new Font("Arial", Font.PLAIN, 20));
-	
+		//answerLabelA.setBounds(125,100,500,100);
+		//answerLabelA.setBackground(new Color(50,50,50));
+		//answerLabelA.setForeground(new Color(25,255,0));
+		//answerLabelA.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		answerLabelB.setBounds(125,200,500,100);
-		answerLabelB.setBackground(new Color(50,50,50));
-		answerLabelB.setForeground(new Color(25,255,0));
-		answerLabelB.setFont(new Font("Arial", Font.PLAIN, 20));
+		//answerLabelB.setBounds(125,200,500,100);
+		//answerLabelB.setBackground(new Color(50,50,50));
+		//answerLabelB.setForeground(new Color(25,255,0));
+		//answerLabelB.setFont(new Font("Arial", Font.PLAIN, 20));
 		
-		secondsLeft.setBounds(535,510,100,100);
-		secondsLeft.setBackground(new Color(25,25,25));
+		secondsLeft.setBounds(900,900,300,300);
+		secondsLeft.setBackground(new Color(80,94,99));
 		secondsLeft.setForeground(new Color(255,0,0));
-		secondsLeft.setFont(new Font("Arial", Font.BOLD, 60));
+		secondsLeft.setFont(new Font("Arial", Font.BOLD, 80));
 		secondsLeft.setBorder(BorderFactory.createBevelBorder(1));
 		secondsLeft.setOpaque(true);
 		secondsLeft.setHorizontalAlignment(JTextField.CENTER);
 		secondsLeft.setText(String.valueOf(seconds));
 		
-		timeLabel.setBounds(535,475,100,25);
+		timeLabel.setBounds(900,870,300,30);
 		timeLabel.setBackground(new Color (50,50,50));
 		timeLabel.setForeground(new Color (255,0,0));
-		timeLabel.setFont(new Font("Arial", Font.BOLD, 20));
+		timeLabel.setFont(new Font("Arial", Font.BOLD, 30));
 		timeLabel.setHorizontalAlignment(JTextField.CENTER);
-		timeLabel.setText("Timer");
+		timeLabel.setText("Mach vorwärts \uD83E\uDD21");
 		
-		numberRight.setBounds(225,225,200,100);
-		numberRight.setBackground(new Color(25,25,25));
-		numberRight.setForeground(new Color(25,255,0));
+		//Antwort Feedback
+		answerFeedback.setBounds(100,475,1000,100);
+		answerFeedback.setBackground(new Color(80,94,99));
+		answerFeedback.setForeground(new Color(185,219,232));
+		answerFeedback.setFont(new Font("Arial", Font.PLAIN, 20));
+		answerFeedback.setHorizontalAlignment(JTextField.CENTER);
+		
+		
+		numberRight.setBounds(400,600,400,100);
+		numberRight.setBackground(new Color(80,94,99));
+		numberRight.setForeground(new Color(185,219,232));
 		numberRight.setFont(new Font("Arial", Font.BOLD, 50));
 		numberRight.setBorder(BorderFactory.createBevelBorder(1));
 		numberRight.setHorizontalAlignment(JTextField.CENTER);
 		numberRight.setEditable(false);
 		
-		percentage.setBounds(225,325,200,100);
-		percentage.setBackground(new Color(25,25,25));
-		percentage.setForeground(new Color(25,255,0));
+		percentage.setBounds(400,700,400,100);
+		percentage.setBackground(new Color(80,94,99));
+		percentage.setForeground(new Color(185,219,232));
 		percentage.setFont(new Font("Arial", Font.BOLD, 50));
 		percentage.setBorder(BorderFactory.createBevelBorder(1));
 		percentage.setHorizontalAlignment(JTextField.CENTER);
 		percentage.setEditable(false);
 		
 		frame.add(timeLabel);
-		frame.add(secondsLeft); //weiter bei 35.04 https://www.youtube.com/watch?v=wk1Fbqh7Tew
-		frame.add(answerLabelA);
-		frame.add(answerLabelB);
+		frame.add(secondsLeft);
+		//frame.add(answerLabelA);
+		//frame.add(answerLabelB);
 		frame.add(buttonA);
 		frame.add(buttonB);
 		frame.add(textarea);
 		frame.add(textfield);
+		frame.add(textfieldQuestion);
 		frame.setVisible(true);
 		
 		nextQuestion();
@@ -170,8 +182,8 @@ public class Spiel implements ActionListener{
 		else {
 			textfield.setText("Question "+ (index+1));
 			textarea.setText(questions[index]);
-			answerLabelA.setText(antwortmöglichkeiten[index][0]);
-			answerLabelB.setText(antwortmöglichkeiten[index][1]);
+			buttonA.setText(antwortmöglichkeiten[index][0]);
+			buttonB.setText(antwortmöglichkeiten[index][1]);
 			timer.start();
 		}
 	}
@@ -184,12 +196,18 @@ public class Spiel implements ActionListener{
 			answer = 'A';
 			if(answer == answers[index]) {
 				correct_guesses++;
+				answerFeedback.setText("Richtiiiig du Champ");
+			}else {
+				answerFeedback.setText("Falsch du Nichtskönner");
 			}
 		}
 		if(e.getSource()==buttonB) {
 			answer = 'B';
 			if(answer == answers[index]) {
 				correct_guesses++;
+				answerFeedback.setText("Richtiiiig du Champ");
+			}else {
+				answerFeedback.setText("Falsch du Nichtskönner");
 			}
 		}
 		displayAnswer();
@@ -202,8 +220,12 @@ public class Spiel implements ActionListener{
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		
+		frame.add(answerFeedback);
+		
 		if(answers[index] != 'A')
 		answerLabelA.setForeground(new Color(255,0,0));
+		
+		
 		if(answers[index] != 'B')
 		answerLabelB.setForeground(new Color(255,0,0));	
 		
@@ -214,6 +236,7 @@ public class Spiel implements ActionListener{
 				answerLabelA.setForeground(new Color(25,255,0));
 				answerLabelB.setForeground(new Color(25,255,0));
 				
+				answerFeedback.setText("Weiter geht's");
 				answer = ' ';
 				seconds= 10;
 				secondsLeft.setText(String.valueOf(seconds));
