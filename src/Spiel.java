@@ -21,16 +21,16 @@ public class Spiel implements ActionListener{
 						};
 	
 	String[][] antwortmöglichkeiten = {
-			{"Brambrüesch", "Haldensteiner Calanda"},
-			{"BigAir,Schlagerparade", "Fasnacht, Churer Fest"},
-			{"Ja", "Nein"}
-			};
+						{"Brambrüesch", "Haldensteiner Calanda"},
+						{"BigAir,Schlagerparade", "Fasnacht, Churer Fest"},
+						{"Ja", "Nein"}
+						};
 	
 	char[] answers = {
-			'A',
-			'A',
-			'B'
-			};
+						'A',
+						'A',
+						'B'
+						};
 
 	char guess;
 	char answer;
@@ -92,14 +92,14 @@ public class Spiel implements ActionListener{
 		textarea.setEditable(false);
 		
 		//Button
-		buttonA.setBounds(0,100,100,100);
+		buttonA.setBounds(125,200,200,100);
 		buttonA.setFont(new Font("Arial", Font.PLAIN, 25));
 		buttonA.setFocusable(false);
 		buttonA.setText("A");
 		buttonA.addActionListener(this);	
 		//buttonA.addActionListener(this); nach tutorial 26.36 sollte es funktionieren erhalte aber Fehlermeldung
 		
-		buttonB.setBounds(0,200,100,100);
+		buttonB.setBounds(325,200,200,100);
 		buttonB.setFont(new Font("Arial", Font.PLAIN, 25));
 		buttonB.setFocusable(false);
 		buttonB.setText("B");
@@ -207,8 +207,8 @@ public class Spiel implements ActionListener{
 		if(answers[index] != 'B')
 		answerLabelB.setForeground(new Color(255,0,0));	
 		
-		// Timer, wartet nach Antwort 3sek, bis nächste Aufgabe kommt bzw. Schriftfarbe sich wieder ändert
-		Timer pause = new Timer(3000, new ActionListener() {
+		// Timer, wartet nach Antwort 2sek, bis nächste Aufgabe kommt bzw. Schriftfarbe sich wieder ändert
+		Timer pause = new Timer(2000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				answerLabelA.setForeground(new Color(25,255,0));
