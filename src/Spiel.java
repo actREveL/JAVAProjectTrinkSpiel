@@ -12,6 +12,15 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Timer;
 
+/*Colours:
+
+Background-Colour "Question 1": RGB (80, 94, 99)
+Schriftfarbe "Question 1": RGB (185, 219, 232)
+Background-Colour Questions: RGB (88, 152, 176)
+Background-Colour Spielfeld: RGB (185, 219, 232)
+Schrift Timer: RGB (255, 0, 0)
+Schriftfarbe allg. (Schwarz): RGB (0, 0, 0) */
+
 
 public class Spiel implements ActionListener{
 	//die folgenden Variabeln sind ausserhalb der Funktionen damit alle Funktionen darauf zugreifen und sie ändern können.
