@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -85,36 +84,36 @@ public class Spiel implements ActionListener{
 		frame.setResizable(false);
 		
 		//Zahl der Frage: Textfield
-		textfield.setBounds(0,0,1200,100);
+		textfield.setBounds(0,0,1200,80);
 		textfield.setBackground(new Color(80,94,99));
 		textfield.setForeground(new Color(185,219,232));
-		textfield.setFont(new Font("Arial", Font.BOLD, 40));
+		textfield.setFont(new Font("Arial", Font.BOLD, 35));
 		textfield.setBorder(BorderFactory.createBevelBorder(1));
 		textfield.setHorizontalAlignment(JTextField.CENTER);
 		textfield.setEditable(false);
 		
 		// Fragetext
-		textarea.setBounds(100,150,1000,100);
+		textarea.setBounds(100,100,1000,100);
 		textarea.setLineWrap(true);
 		textarea.setWrapStyleWord(true);
 		textarea.setBackground(new Color(88,152,176));
 		textarea.setForeground(new Color(0,0,0));
-		textarea.setFont(new Font("Arial", Font.BOLD, 35));
+		textarea.setFont(new Font("Arial", Font.PLAIN, 30));
 		textarea.setBorder(BorderFactory.createEmptyBorder());
 		textarea.setEditable(false);
 		
-		textfieldQuestion.setBounds(0,100,1200,160);
+		textfieldQuestion.setBounds(0,80,1200,120);
 		textfieldQuestion.setBorder(null);
 		textfieldQuestion.setBackground(new Color(88,152,176));
 		
 		//Button
-		buttonA.setBounds(100,275,1000,100);
+		buttonA.setBounds(200,225,800,80);
 		buttonA.setFont(new Font("Arial", Font.PLAIN, 25));
 		buttonA.setFocusable(false);
 		buttonA.addActionListener(this);	
 
 		
-		buttonB.setBounds(100,375,1000,100);
+		buttonB.setBounds(200,305,800,80);
 		buttonB.setFont(new Font("Arial", Font.PLAIN, 25));
 		buttonB.setFocusable(false);
 		buttonB.addActionListener(this);
@@ -147,25 +146,25 @@ public class Spiel implements ActionListener{
 		timeLabel.setText("Mach vorwärts \uD83E\uDD21");
 		
 		//Antwort Feedback
-		answerFeedback.setBounds(100,475,1000,100);
+		answerFeedback.setBounds(200,385,800,80);
 		answerFeedback.setBackground(new Color(80,94,99));
 		answerFeedback.setForeground(new Color(185,219,232));
 		answerFeedback.setFont(new Font("Arial", Font.PLAIN, 20));
 		answerFeedback.setHorizontalAlignment(JTextField.CENTER);
 		
 		
-		numberRight.setBounds(400,600,400,100);
+		numberRight.setBounds(400,525,400,100);
 		numberRight.setBackground(new Color(80,94,99));
 		numberRight.setForeground(new Color(185,219,232));
-		numberRight.setFont(new Font("Arial", Font.BOLD, 50));
+		numberRight.setFont(new Font("Arial", Font.BOLD, 40));
 		numberRight.setBorder(BorderFactory.createBevelBorder(1));
 		numberRight.setHorizontalAlignment(JTextField.CENTER);
 		numberRight.setEditable(false);
 		
-		percentage.setBounds(400,700,400,100);
+		percentage.setBounds(400,625,400,100);
 		percentage.setBackground(new Color(80,94,99));
 		percentage.setForeground(new Color(185,219,232));
-		percentage.setFont(new Font("Arial", Font.BOLD, 50));
+		percentage.setFont(new Font("Arial", Font.BOLD, 40));
 		percentage.setBorder(BorderFactory.createBevelBorder(1));
 		percentage.setHorizontalAlignment(JTextField.CENTER);
 		percentage.setEditable(false);
