@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -62,6 +63,8 @@ public class Spiel implements ActionListener{
 	JLabel secondsLeft = new JLabel();
 	JTextField numberRight = new JTextField();
 	JTextField percentage = new JTextField();
+	JLabel pictureDisplay = new JLabel();
+	ImageIcon imageResult = new ImageIcon("src/Images/results.png");
 	
 	// Timer, der runterzählt
 	Timer timer = new Timer(1000, new ActionListener() {
@@ -153,7 +156,7 @@ public class Spiel implements ActionListener{
 		answerFeedback.setHorizontalAlignment(JTextField.CENTER);
 		
 		
-		numberRight.setBounds(400,525,400,100);
+		numberRight.setBounds(400,225,400,100);
 		numberRight.setBackground(new Color(80,94,99));
 		numberRight.setForeground(new Color(185,219,232));
 		numberRight.setFont(new Font("Arial", Font.BOLD, 40));
@@ -161,13 +164,15 @@ public class Spiel implements ActionListener{
 		numberRight.setHorizontalAlignment(JTextField.CENTER);
 		numberRight.setEditable(false);
 		
-		percentage.setBounds(400,625,400,100);
+		percentage.setBounds(400,325,400,100);
 		percentage.setBackground(new Color(80,94,99));
 		percentage.setForeground(new Color(185,219,232));
 		percentage.setFont(new Font("Arial", Font.BOLD, 40));
 		percentage.setBorder(BorderFactory.createBevelBorder(1));
 		percentage.setHorizontalAlignment(JTextField.CENTER);
 		percentage.setEditable(false);
+		
+		pictureDisplay.setBounds(450,450,300,300);
 		
 		frame.add(timeLabel);
 		frame.add(secondsLeft);
@@ -259,13 +264,18 @@ public class Spiel implements ActionListener{
 		pause.start();
 	}
 	public void results () {
-		buttonA.setEnabled(false);
-		buttonB.setEnabled(false);
+		buttonA.setVisible(false);
+		buttonB.setVisible(false);
+		answerFeedback.setVisible(false);
+		secondsLeft.setVisible(false);
+		timeLabel.setVisible(false);
+		pictureDisplay.setIcon(imageResult);
 		
 		result = (int)((correct_guesses/(double)totalQuestions)*100);
 		
-		textfield.setText("RESULTS");
-		textarea.setText("");
+		
+		textfield.setText("RESULTATE:");
+		textarea.setText("Du heschs gschafft aber suuf wiiter!");
 		answerLabelA.setText("");
 		answerLabelB.setText("");
 		
@@ -274,7 +284,7 @@ public class Spiel implements ActionListener{
 		
 		frame.add(numberRight);
 		frame.add(percentage);
-		
+		frame.add(pictureDisplay);
 	}
 }
 
