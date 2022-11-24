@@ -1,6 +1,7 @@
+package ch.fhgr.java.trinkspiel;
 
-public class Gifs {
-	
+public class Spieler {
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 

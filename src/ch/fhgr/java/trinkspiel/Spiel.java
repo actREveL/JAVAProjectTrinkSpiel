@@ -1,3 +1,4 @@
+package ch.fhgr.java.trinkspiel;
 import java.awt.*;
 /*
 import java.awt.Color;
