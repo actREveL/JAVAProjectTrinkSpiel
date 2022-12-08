@@ -29,7 +29,7 @@ public class FrageInitialisator {
 //			ArrayList<String> antworten = new ArrayList<String>();
 //			antworten.add(rs.getString(1));
 //			Frage frage = new Frage(rs.getString(2), antworten, rs.getInt(3));
-//			fragen.addFrage(frage); //
+//			fragen.addFrage(frage); //wie kann man die frage von der DB in einem loop darstellen?
 //		}
 //		
 //		con.close();
@@ -64,6 +64,6 @@ public class FrageInitialisator {
 		
 	}
 	public void printQuestions() {
-		System.out.println(getFragen());
+		System.out.println(fragen);//wie gehe ich mit diesen Fragen um, frag die einzelne teile der arraylist ab?
 	}
 	}
