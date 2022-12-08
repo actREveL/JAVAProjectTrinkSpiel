@@ -1,4 +1,4 @@
-package ch.fhgr.java.trinkspiel;
+package ch.fhgr.java.trinkspiel.view;
 
 import java.awt.*;
 /*
@@ -31,7 +31,7 @@ Schrift Timer: RGB (255, 0, 0)
 Schriftfarbe allg. (Schwarz): RGB (0, 0, 0) */
 
 
-public class Spiel implements ActionListener{
+public class SpielView implements ActionListener{
 	//die folgenden Variabeln sind ausserhalb der Funktionen damit alle Funktionen darauf zugreifen und sie ändern können.
 	String[] questions = {
 						"Wie heisst der Churer Hausberg?",
@@ -73,7 +73,7 @@ public class Spiel implements ActionListener{
 	JTextField numberRight = new JTextField();
 	JTextField percentage = new JTextField();
 	JLabel pictureDisplay = new JLabel();
-	ImageIcon imageResult = new ImageIcon("src/Images/results.png");
+	ImageIcon imageResult = new ImageIcon("src/ch/fhgr/java/trinkspiel/ressources/results.png");
 	
 	// Timer, der runterzählt
 	Timer timer = new Timer(1000, new ActionListener() {
@@ -87,7 +87,7 @@ public class Spiel implements ActionListener{
 		}	
 	});
 	
-	public Spiel() {
+	public SpielView() {
 		//Frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1200,800);
