@@ -37,7 +37,7 @@ public void setFrage(String frage) {
 	this.fragetext = frage;
 }
 
-public void setAntwortmöglichkeiten (ArrayList<String> antwortmöglichkeiten) {
+public void setAntwortvarianten (ArrayList<String> antwortmöglichkeiten) {
 	this.antwortvarianten = antwortmöglichkeiten;
 }
 
@@ -49,7 +49,7 @@ public String getFrage() {
 	return fragetext;
 }
 
-public ArrayList<String> getAntwortmöglichkeiten() {
+public ArrayList<String> getAntwortvarianten() {
 	return antwortvarianten;
 }
 
