@@ -57,6 +57,7 @@ public int getRichtigeAntwort() {
 	return richtigeAntwort;
 }
 
+
 /*
  * Funktion istrichtig public boolean hinzufügen*/
 public String toString() { //hierweiter

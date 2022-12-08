@@ -15,7 +15,6 @@ public class FrageSammlung {
 		this.fragen = fragen;
 	}
 	
-	
 	public ArrayList<Frage> getFragen() {
 		return fragen;
 	}
@@ -26,6 +25,11 @@ public class FrageSammlung {
 
 	public void addFrage(Frage frage) {
 		fragen.add(frage);
+	}
+	
+	public void selectQuestion() {
+		
+		
 	}
 	
 	/* public String toString() {

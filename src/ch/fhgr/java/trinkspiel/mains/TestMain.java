@@ -9,9 +9,9 @@ public class TestMain {
 		
 		FrageInitialisator initiate = new FrageInitialisator();
 		initiate.initaliseTestQuestions();
-		initiate.printQuestions();
+//		initiate.printQuestions();
 		
-        System.out.println("ok");
+
 	}
 
 }
