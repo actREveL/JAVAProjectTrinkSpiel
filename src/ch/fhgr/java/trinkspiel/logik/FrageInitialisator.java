@@ -1,10 +1,7 @@
 package ch.fhgr.java.trinkspiel.logik;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class FrageInitialisator {
 //	public void initaliseTestQuestions() {
@@ -64,6 +61,16 @@ public class FrageInitialisator {
 		
 	}
 	public void printQuestions() {
-		System.out.println(fragen);//wie gehe ich mit diesen Fragen um, frag die einzelne teile der arraylist ab?
+		Iterator <Frage> it = fragen.getFragen().iterator();
+		while (it.hasNext()) {
+			Frage f = it.next();
+			System.out.println(f);
+		}
+	}
+	public FrageSammlung getFragen() {
+		return fragen;
+	}
+	public void setFragen(FrageSammlung fragen) {
+		this.fragen = fragen;
 	}
 	}

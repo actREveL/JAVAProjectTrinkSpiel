@@ -62,7 +62,17 @@ public int getRichtigeAntwort() {
  * Funktion istrichtig public boolean hinzufügen*/
 public String toString() { //hierweiter
 	StringBuffer sb = new StringBuffer();
-	sb.append(fragetext);
+	sb.append(fragetext + "\n");
+	
+	Iterator <String> st = antwortvarianten.iterator();
+	while (st.hasNext()) {
+		String a = st.next();
+		sb.append(" - ");
+		sb.append(a);
+		sb.append("\n");
+	} 
+	
+	sb.append("  richtige Antwort: " + this.richtigeAntwort);
 	
 	return(sb.toString());
 }

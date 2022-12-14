@@ -1,17 +1,20 @@
 package ch.fhgr.java.trinkspiel.mains;
 
-import ch.fhgr.java.trinkspiel.logik.FrageInitialisator;
-import ch.fhgr.java.trinkspiel.logik.FrageSammlung;
+import ch.fhgr.java.trinkspiel.logik.Frage;
+import ch.fhgr.java.trinkspiel.logik.SpielAblaufController;
 
 public class TestMain {
 
 	public static void main(String[] args) {
 		
-		FrageInitialisator initiate = new FrageInitialisator();
-		initiate.initaliseTestQuestions();
-		initiate.printQuestions();
+		SpielAblaufController controller = new SpielAblaufController();
+		controller.init();
 		
-
+		while (controller.nochFragenUebrig()) {
+			Frage frage = controller.getRandomFrage();
+			System.out.println(frage);
+		}
+		
 	}
 
 }

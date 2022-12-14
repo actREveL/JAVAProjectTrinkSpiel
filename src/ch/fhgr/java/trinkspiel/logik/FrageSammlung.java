@@ -27,9 +27,12 @@ public class FrageSammlung {
 		fragen.add(frage);
 	}
 	
-	public void selectQuestion() {
-		
-		
+	public int getAnzahlFragen() {
+		return fragen.size();
+	}
+	
+	public Frage selectQuestion(int index) {
+		return fragen.get(index);
 	}
 	
 	/* public String toString() {
