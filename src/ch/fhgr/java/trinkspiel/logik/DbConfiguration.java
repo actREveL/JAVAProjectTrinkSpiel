@@ -11,6 +11,6 @@ public class DbConfiguration {
 	
 	public static String buildURL() {
 		return DbConfiguration.URL_BASE + DbConfiguration.IP + ":" + 
-				DbConfiguration.PORT+"/" + DbConfiguration.DBNAME;
+				DbConfiguration.PORT + "/" + DbConfiguration.DBNAME;
 }
 }
