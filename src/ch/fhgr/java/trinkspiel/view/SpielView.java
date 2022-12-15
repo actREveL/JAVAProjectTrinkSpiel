@@ -28,24 +28,6 @@ Schriftfarbe allg. (Schwarz): RGB (0, 0, 0) */
 
 
 public class SpielView implements ActionListener{
-	//die folgenden Variabeln sind ausserhalb der Funktionen damit alle Funktionen darauf zugreifen und sie ändern können.
-	/*String[] questions = {
-						"Wie heisst der Churer Hausberg?",
-						"Welches sind die grössten Events von Chur?",
-						"Stimmt es dass in Chur eine Polizeistunde herrscht?"
-						};
-	
-	String[][] antwortmöglichkeiten = {
-						{"Brambrüesch", "Haldensteiner Calanda"},
-						{"BigAir,Schlagerparade", "Fasnacht, Churer Fest"},
-						{"Ja", "Nein"}
-						};
-	
-	char[] answers = {
-						'A',
-						'A',
-						'B'
-						}; -> brauchen wir hier nicht */
 
 	private SpielAblaufController controller = new SpielAblaufController();
 	
@@ -56,20 +38,19 @@ public class SpielView implements ActionListener{
 	int seconds = 10;
 	
 	// TO DO: alles was noch angefasst wird private machen und alles andere kann runter in SpielView
-	JFrame frame = new JFrame();
-	JTextField textfield = new JTextField();
-	JTextField textfieldQuestion = new JTextField();
-	JTextArea textarea = new JTextArea();
+	private JFrame frame = new JFrame();
+	private JTextField textfield = new JTextField();
+	private JTextArea textarea = new JTextArea();
 	private JButton buttonA = new JButton();
 	private JButton buttonB = new JButton();
-	JLabel answerLabelA = new JLabel();
-	JLabel answerLabelB = new JLabel();
-	JTextField answerFeedback = new JTextField();
-	JLabel timeLabel = new JLabel();
-	JLabel secondsLeft = new JLabel();
-	JTextField numberRight = new JTextField();
-	JTextField percentage = new JTextField();
-	JLabel pictureDisplay = new JLabel();
+	private JLabel answerLabelA = new JLabel();
+	private JLabel answerLabelB = new JLabel();
+	private JTextField answerFeedback = new JTextField();
+	private JLabel timeLabel = new JLabel();
+	private JLabel secondsLeft = new JLabel();
+	private JTextField numberRight = new JTextField();
+	private JTextField percentage = new JTextField();
+	private JLabel pictureDisplay = new JLabel();
 	ImageIcon imageResult = new ImageIcon("src/ch/fhgr/java/trinkspiel/ressources/results.png");
 	
 	// Timer, der runterzählt
@@ -91,6 +72,8 @@ public class SpielView implements ActionListener{
 		frame.getContentPane().setBackground(new Color(185,219,232));//Hintergrund noch ändern?
 		frame.setLayout(null);
 		frame.setResizable(false);
+		frame.setLocationRelativeTo(null);
+		frame.setVisible(true);
 		
 		//Zahl der Frage: Textfield
 		textfield.setBounds(0,0,1200,80);
@@ -111,6 +94,7 @@ public class SpielView implements ActionListener{
 		textarea.setBorder(BorderFactory.createEmptyBorder());
 		textarea.setEditable(false);
 		
+		JTextField textfieldQuestion = new JTextField();
 		textfieldQuestion.setBounds(0,80,1200,120);
 		textfieldQuestion.setBorder(null);
 		textfieldQuestion.setBackground(new Color(88,152,176));
