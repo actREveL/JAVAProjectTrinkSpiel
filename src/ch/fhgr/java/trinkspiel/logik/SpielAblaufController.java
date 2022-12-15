@@ -13,6 +13,8 @@ public class SpielAblaufController {
 	
 	private int counter;
 	
+	private Frage aktuelleFrage;
+	
 	// Constructor
 	public SpielAblaufController() {
 		FrageInitialisator fi = new FrageInitialisator();
@@ -21,6 +23,10 @@ public class SpielAblaufController {
 				
 	}
 	
+	public Frage getAktuelleFrage() {
+		return aktuelleFrage;
+	}
+
 	public void init () {
 		this.counter = fragen.getAnzahlFragen();
 		redundanz.clear();
@@ -31,6 +37,10 @@ public class SpielAblaufController {
 	
 	public boolean nochFragenUebrig () {
 		return counter > 0;
+	}
+	
+	public int getAnzahlFragen() {
+		return fragen.getAnzahlFragen();
 	}
 	
 	public Frage getRandomFrage() {
@@ -48,7 +58,9 @@ public class SpielAblaufController {
 			}
 		}
 		counter --;
-		return fragen.selectQuestion(i);
+		
+		this.aktuelleFrage = fragen.selectQuestion(i);
+		return this.aktuelleFrage;
 	}
 	
 	

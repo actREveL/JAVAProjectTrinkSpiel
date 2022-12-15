@@ -1,16 +1,10 @@
 package ch.fhgr.java.trinkspiel.view;
 
-import java.awt.*;
-/*
 import java.awt.Color;
 import java.awt.Font;
-*/
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
-
-/*
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,7 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Timer;
-*/
+
+import ch.fhgr.java.trinkspiel.logik.Frage;
+import ch.fhgr.java.trinkspiel.logik.SpielAblaufController;
 
 /*Colours:
 
@@ -33,7 +29,7 @@ Schriftfarbe allg. (Schwarz): RGB (0, 0, 0) */
 
 public class SpielView implements ActionListener{
 	//die folgenden Variabeln sind ausserhalb der Funktionen damit alle Funktionen darauf zugreifen und sie ändern können.
-	String[] questions = {
+	/*String[] questions = {
 						"Wie heisst der Churer Hausberg?",
 						"Welches sind die grössten Events von Chur?",
 						"Stimmt es dass in Chur eine Polizeistunde herrscht?"
@@ -49,22 +45,23 @@ public class SpielView implements ActionListener{
 						'A',
 						'A',
 						'B'
-						};
+						}; -> brauchen wir hier nicht */
 
-	char guess;
-	char answer;
-	int index;
-	int correct_guesses = 0;
-	int totalQuestions = questions.length;
-	int result;
+	private SpielAblaufController controller = new SpielAblaufController();
+	
+	private int answer;
+	private int index;
+	private int correct_guesses = 0;
+	private int result;
 	int seconds = 10;
 	
+	// TO DO: alles was noch angefasst wird private machen und alles andere kann runter in SpielView
 	JFrame frame = new JFrame();
 	JTextField textfield = new JTextField();
 	JTextField textfieldQuestion = new JTextField();
 	JTextArea textarea = new JTextArea();
-	JButton buttonA = new JButton();
-	JButton buttonB = new JButton();
+	private JButton buttonA = new JButton();
+	private JButton buttonB = new JButton();
 	JLabel answerLabelA = new JLabel();
 	JLabel answerLabelB = new JLabel();
 	JTextField answerFeedback = new JTextField();
@@ -194,18 +191,20 @@ public class SpielView implements ActionListener{
 		frame.add(textfieldQuestion);
 		frame.setVisible(true);
 		
+		controller.init();
 		nextQuestion();
 		
 	}
 	public void nextQuestion() {
-		if(index>= totalQuestions) {
+		if (!controller.nochFragenUebrig()) {
 			results();
 		}
 		else {
+			Frage frage = controller.getRandomFrage();
 			textfield.setText("Question "+ (index+1));
-			textarea.setText(questions[index]);
-			buttonA.setText(antwortmöglichkeiten[index][0]);
-			buttonB.setText(antwortmöglichkeiten[index][1]);
+			textarea.setText(frage.getFrage());
+			buttonA.setText(frage.getAntwortvarianten().get(0));
+			buttonB.setText(frage.getAntwortvarianten().get(1));
 			timer.start();
 		}
 	}
@@ -214,25 +213,23 @@ public class SpielView implements ActionListener{
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		
+		answer = -1;
 		if(e.getSource()==buttonA) {
-			answer = 'A';
-			if(answer == answers[index]) {
-				correct_guesses++;
-				answerFeedback.setText("Richtiiiig du Champ");
-			}else {
-				answerFeedback.setText("Falsch du Nichtskönner");
-			}
+			answer = 0;
 		}
 		if(e.getSource()==buttonB) {
-			answer = 'B';
-			if(answer == answers[index]) {
+			answer = 1;
+		}
+		
+		if (answer != -1) {
+			if(answer == controller.getAktuelleFrage().getRichtigeAntwort()) {
 				correct_guesses++;
 				answerFeedback.setText("Richtiiiig du Champ");
 			}else {
 				answerFeedback.setText("Falsch du Nichtskönner");
 			}
+			displayAnswer();
 		}
-		displayAnswer();
 		
 	}
 	public void displayAnswer() {
@@ -244,11 +241,12 @@ public class SpielView implements ActionListener{
 		
 		frame.add(answerFeedback);
 		
-		if(answers[index] != 'A')
+		int richtig = controller.getAktuelleFrage().getRichtigeAntwort();
+		if(richtig != 0)
 		answerLabelA.setForeground(new Color(255,0,0));
 		
 		
-		if(answers[index] != 'B')
+		if(richtig != 1)
 		answerLabelB.setForeground(new Color(255,0,0));	
 		
 		// Timer, wartet nach Antwort 2sek, bis nächste Aufgabe kommt bzw. Schriftfarbe sich wieder ändert
@@ -280,7 +278,7 @@ public class SpielView implements ActionListener{
 		timeLabel.setVisible(false);
 		pictureDisplay.setIcon(imageResult);
 		
-		result = (int)((correct_guesses/(double)totalQuestions)*100);
+		result = (int)((correct_guesses/(double)controller.getAnzahlFragen())*100);
 		
 		
 		textfield.setText("RESULTATE:");
@@ -288,7 +286,7 @@ public class SpielView implements ActionListener{
 		answerLabelA.setText("");
 		answerLabelB.setText("");
 		
-		numberRight.setText("(" + correct_guesses + "/" + totalQuestions + ")");
+		numberRight.setText("(" + correct_guesses + "/" + controller.getAnzahlFragen() + ")");
 		percentage.setText(result + "%");
 		
 		frame.add(numberRight);

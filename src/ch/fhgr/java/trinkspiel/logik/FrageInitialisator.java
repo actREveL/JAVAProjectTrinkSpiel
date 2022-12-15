@@ -22,7 +22,7 @@ public class FrageInitialisator {
 			// 3
 			Statement stmt = con.createStatement(); 
 			
-			// 4 (Tabelle kreieren und einfügen - bruchemer ned)
+			// 4 (Tabelle kreieren und einfügen - bruchemer ned!)
 			/*System.out.println("Testtabelle kreieren");
 			
 			stmt.executeUpdate(
@@ -67,7 +67,7 @@ public class FrageInitialisator {
 		}	
 	
 	private FrageSammlung fragen = new FrageSammlung();
-	/*
+	/* brauchen wir nicht mehr, weil DB!
 		public void initaliseTestQuestions() {
 		ArrayList<String> antworten = new ArrayList<String>();
 		antworten.add("Brambrüesch");

@@ -1,5 +1,6 @@
 package ch.fhgr.java.trinkspiel.logik;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -26,9 +27,9 @@ private ArrayList<String> antwortvarianten;
 private int richtigeAntwort;
 
 
-public Frage(String fraget, ArrayList<String> antwortmöglichkeiten, int richtigeAntwort) {
+public Frage(String frage, ArrayList<String> antwortmöglichkeiten, int richtigeAntwort) {
 	super();
-	this.fragetext = fraget;
+	this.fragetext = frage;
 	this.antwortvarianten = antwortmöglichkeiten;
 	this.richtigeAntwort = richtigeAntwort;
 }
