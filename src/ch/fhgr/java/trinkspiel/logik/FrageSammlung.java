@@ -34,18 +34,5 @@ public class FrageSammlung {
 	public Frage selectQuestion(int index) {
 		return fragen.get(index);
 	}
-	
-	/* public String toString() {
-		StringBuffer sb = new StringBuffer();
-		
-		Iterator<Frage> it = this.fragen.iterator();
-		while(it.hasNext()) {
-			Frage frage = (Frage)it.next();
-			sb.append(frage);
-			sb.append("\n");
-		}
-		
-		return(sb.toString());
-	} */
 
 }

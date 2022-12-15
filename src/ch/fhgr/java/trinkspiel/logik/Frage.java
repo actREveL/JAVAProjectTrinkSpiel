@@ -58,9 +58,7 @@ public int getRichtigeAntwort() {
 }
 
 
-/*
- * Funktion istrichtig public boolean hinzufügen*/
-public String toString() { //hierweiter
+public String toString() { 
 	StringBuffer sb = new StringBuffer();
 	sb.append(fragetext + "\n");
 	

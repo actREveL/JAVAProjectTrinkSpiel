@@ -22,7 +22,7 @@ public class FrageInitialisator {
 			// 3
 			Statement stmt = con.createStatement(); 
 			
-			// 4
+			// 4 (Tabelle kreieren und einfügen - bruchemer ned)
 			/*System.out.println("Testtabelle kreieren");
 			
 			stmt.executeUpdate(
@@ -51,7 +51,7 @@ public class FrageInitialisator {
 			
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Fragentrinkspiel");
 			while(rs.next()) {
-				System.out.println(rs.getString(2) + " : " + rs.getString(1));
+				//System.out.println(rs.getString(2) + " : " + rs.getString(1));
 				ArrayList<String> antworten = new ArrayList<String>();
 				antworten.add(rs.getString(1));
 				Frage frage = new Frage(rs.getString(2), antworten, rs.getInt(3));
