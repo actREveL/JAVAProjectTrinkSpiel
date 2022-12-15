@@ -2,10 +2,10 @@ package ch.fhgr.java.trinkspiel.logik;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-// import java.sql.*;
+import java.sql.*;
 
 public class FrageInitialisator {
-/*	public void initaliseTestQuestions() {
+	public void initaliseTestQuestions() {
 		try {
 		
 			// 1 - Register driver
@@ -20,10 +20,10 @@ public class FrageInitialisator {
 					DbConfiguration.buildURL(), DbConfiguration.USER, DbConfiguration.PASSWORT);
 			
 			// 3
-			Statement stmt = con.createStatement();
+			Statement stmt = con.createStatement(); 
 			
 			// 4
-			System.out.println("Testtabelle kreieren");
+			/*System.out.println("Testtabelle kreieren");
 			
 			stmt.executeUpdate(
 				"create table testtable(id INTEGER not NULL AUTO_INCREMENT, " 
@@ -45,10 +45,10 @@ public class FrageInitialisator {
 	         System.out.println(i+" records inserted");  
 
 	         stmt1.setString(1, "Phil");  
-	         stmt1.executeUpdate();   */ 
+	         stmt1.executeUpdate();   
 			
-			/*
-			System.out.println("Inhalte der Tabelle lesen...");
+			System.out.println("Inhalte der Tabelle lesen...");*/
+			
 			ResultSet rs = stmt.executeQuery("SELECT * FROM Fragentrinkspiel");
 			while(rs.next()) {
 				System.out.println(rs.getString(2) + " : " + rs.getString(1));
@@ -65,10 +65,9 @@ public class FrageInitialisator {
 			System.out.println(e);
 			}
 		}	
-	} */
 	
 	private FrageSammlung fragen = new FrageSammlung();
-	
+	/*
 		public void initaliseTestQuestions() {
 		ArrayList<String> antworten = new ArrayList<String>();
 		antworten.add("Brambrüesch");
@@ -87,10 +86,8 @@ public class FrageInitialisator {
 		antworten.add("Nein");
 		Frage frage2 = new Frage("Stimmt es, dass in Chur eine Polizeistunde herrscht?", antworten, 1);
 		fragen.addFrage(frage2);
+	}*/
 		
-		
-		
-	}
 	public void printQuestions() {
 		Iterator <Frage> it = fragen.getFragen().iterator();
 		while (it.hasNext()) {
