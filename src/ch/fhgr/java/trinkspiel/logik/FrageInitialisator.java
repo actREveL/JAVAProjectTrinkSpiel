@@ -1,6 +1,5 @@
 package ch.fhgr.java.trinkspiel.logik;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.sql.*;
 
@@ -49,12 +48,13 @@ public class FrageInitialisator {
 			
 			System.out.println("Inhalte der Tabelle lesen...");*/
 			
-			ResultSet rs = stmt.executeQuery("SELECT * FROM Fragentrinkspiel");
+			// 	ResultSet rs = stmt.executeQuery("SELECT * FROM Fragentrinkspiel");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM FragenDatenbank");
 			while(rs.next()) {
 				//System.out.println(rs.getString(2) + " : " + rs.getString(1));
-				ArrayList<String> antworten = new ArrayList<String>();
-				antworten.add(rs.getString(1));
-				Frage frage = new Frage(rs.getString(2), antworten, rs.getInt(3));
+				//ArrayList<String> antworten = new ArrayList<String>();
+				// antworten.add(rs.getString(1));
+				Frage frage = new Frage(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
 				fragen.addFrage(frage); //wie kann man die frage von der DB in einem loop darstellen?
 		}
 			

@@ -136,7 +136,7 @@ public class SpielView implements ActionListener{
 		timeLabel.setForeground(new Color (255,0,0));
 		timeLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		timeLabel.setHorizontalAlignment(JTextField.CENTER);
-		timeLabel.setText("Mach vorwärts \uD83E\uDD21");
+		timeLabel.setText("Mach vorwärts!!");
 		
 		//Antwort Feedback
 		answerFeedback.setBounds(200,385,800,80);
@@ -187,8 +187,8 @@ public class SpielView implements ActionListener{
 			Frage frage = controller.getRandomFrage();
 			textfield.setText("Question "+ (index+1));
 			textarea.setText(frage.getFrage());
-			buttonA.setText(frage.getAntwortvarianten().get(0));
-			buttonB.setText(frage.getAntwortvarianten().get(1));
+			buttonA.setText(frage.getAntwort0());
+			buttonB.setText(frage.getAntwort1());
 			timer.start();
 		}
 	}
