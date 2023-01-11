@@ -51,6 +51,9 @@ public class SpielView implements ActionListener{
 	private JTextField percentage = new JTextField();
 	private JLabel pictureDisplay = new JLabel();
 	private JButton buttonStopGame = new JButton();
+	private JButton buttonPauseGame = new JButton();
+	private JButton buttonContinueGame = new JButton();
+
 
 	ImageIcon imageResult = new ImageIcon("src/ch/fhgr/java/trinkspiel/ressources/results.png");
 	
@@ -113,11 +116,24 @@ public class SpielView implements ActionListener{
 		buttonB.setFocusable(false);
 		buttonB.addActionListener(this);
 		
-		buttonStopGame.setBounds(200,500,800,80);
+		buttonStopGame.setBounds(600,500,400,80);
 		buttonStopGame.setFont(new Font("Arial", Font.PLAIN, 25));
-		buttonStopGame.setText("End Game");
+		buttonStopGame.setText(userFeedback.endGame);
 		buttonStopGame.setFocusable(false);
 		buttonStopGame.addActionListener(this);
+		
+		buttonPauseGame.setBounds(200,500,400,80);
+		buttonPauseGame.setFont(new Font("Arial", Font.PLAIN, 25));
+		buttonPauseGame.setText(userFeedback.pauseGame);
+		buttonPauseGame.setFocusable(false);
+		buttonPauseGame.addActionListener(this);
+		
+		buttonContinueGame.setVisible(false);
+		buttonContinueGame.setBounds(200,600,400,80);
+		buttonContinueGame.setFont(new Font("Arial", Font.PLAIN, 25));
+		buttonContinueGame.setText(userFeedback.continueGame);
+		buttonContinueGame.setFocusable(false);
+		buttonContinueGame.addActionListener(this);
 
 		
 		// Timer
@@ -164,9 +180,11 @@ public class SpielView implements ActionListener{
 		
 		frame.add(timeLabel);
 		frame.add(secondsLeft);
-		frame.add(buttonStopGame);
 		frame.add(buttonA);
 		frame.add(buttonB);
+		frame.add(buttonStopGame);
+		frame.add(buttonPauseGame);
+		frame.add(buttonContinueGame);
 		frame.add(textarea);
 		frame.add(textfield);
 		frame.add(textfieldQuestion);
@@ -195,7 +213,22 @@ public class SpielView implements ActionListener{
 		buttonB.setEnabled(false);
 		
 		if(e.getSource()==buttonStopGame) {
+			controller.setCounter(0);
 			results();
+		}
+		
+		if(e.getSource()==buttonPauseGame) {
+			timer.stop();
+			buttonContinueGame.setVisible(true);
+			
+		}
+		
+		if(e.getSource()==buttonContinueGame) {
+			buttonA.setEnabled(true);
+			buttonB.setEnabled(true);
+			nextQuestion();
+			buttonContinueGame.setVisible(false);
+
 		}
 		
 		answer = -1;
@@ -265,8 +298,9 @@ public class SpielView implements ActionListener{
 		secondsLeft.setVisible(false);
 		timeLabel.setVisible(false);
 		buttonStopGame.setVisible(false);
+		buttonPauseGame.setVisible(false);
+		buttonContinueGame.setVisible(false);
 		pictureDisplay.setIcon(imageResult);
-		//SpielAblaufController.counter = 0;
 		
 		result = (int)((correct_guesses/(double)controller.getAnzahlFragen())*100);
 		

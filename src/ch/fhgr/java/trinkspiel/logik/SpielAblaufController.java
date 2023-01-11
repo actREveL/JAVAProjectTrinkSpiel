@@ -10,8 +10,12 @@ public class SpielAblaufController {
 	
 	private ArrayList <Boolean> redundanz = new ArrayList <Boolean> ();
 	
-	private int counter;
+	public int counter;
 	
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
+
 	private Frage aktuelleFrage;
 	
 	// Constructor
