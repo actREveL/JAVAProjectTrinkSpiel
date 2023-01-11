@@ -16,6 +16,7 @@ import javax.swing.Timer;
 
 import ch.fhgr.java.trinkspiel.logik.Frage;
 import ch.fhgr.java.trinkspiel.logik.SpielAblaufController;
+import ch.fhgr.java.trinkspiel.logik.userFeedback;
 
 /*Colours:
 
@@ -88,7 +89,7 @@ public class SpielView implements ActionListener{
 		textarea.setBounds(100,100,1000,100);
 		textarea.setLineWrap(true);
 		textarea.setWrapStyleWord(true);
-		textarea.setBackground(new Color(88,152,176));
+		//textarea.setBackground(new Color(88,152,176));
 		textarea.setForeground(new Color(0,0,0));
 		textarea.setFont(new Font("Arial", Font.PLAIN, 30));
 		textarea.setBorder(BorderFactory.createEmptyBorder());
@@ -99,29 +100,20 @@ public class SpielView implements ActionListener{
 		textfieldQuestion.setBorder(null);
 		textfieldQuestion.setBackground(new Color(88,152,176));
 		
-		//Button
+		//Buttons
 		buttonA.setBounds(200,225,800,80);
 		buttonA.setFont(new Font("Arial", Font.PLAIN, 25));
+		buttonA.setBackground(new Color(220, 220, 220));
 		buttonA.setFocusable(false);
 		buttonA.addActionListener(this);	
-
 		
 		buttonB.setBounds(200,305,800,80);
 		buttonB.setFont(new Font("Arial", Font.PLAIN, 25));
+		buttonB.setBackground(new Color(220, 220, 220));
 		buttonB.setFocusable(false);
 		buttonB.addActionListener(this);
 		
-		//Antworttext
-		//answerLabelA.setBounds(125,100,500,100);
-		//answerLabelA.setBackground(new Color(50,50,50));
-		//answerLabelA.setForeground(new Color(25,255,0));
-		//answerLabelA.setFont(new Font("Arial", Font.PLAIN, 20));
-		
-		//answerLabelB.setBounds(125,200,500,100);
-		//answerLabelB.setBackground(new Color(50,50,50));
-		//answerLabelB.setForeground(new Color(25,255,0));
-		//answerLabelB.setFont(new Font("Arial", Font.PLAIN, 20));
-		
+		// Timer
 		secondsLeft.setBounds(1000,600,200,200);
 		secondsLeft.setBackground(new Color(80,94,99));
 		secondsLeft.setForeground(new Color(255,0,0));
@@ -142,7 +134,7 @@ public class SpielView implements ActionListener{
 		answerFeedback.setBounds(200,385,800,80);
 		answerFeedback.setBackground(new Color(80,94,99));
 		answerFeedback.setForeground(new Color(185,219,232));
-		answerFeedback.setFont(new Font("Arial", Font.PLAIN, 20));
+		answerFeedback.setFont(new Font("Arial", Font.PLAIN, 30));
 		answerFeedback.setHorizontalAlignment(JTextField.CENTER);
 		
 		
@@ -208,9 +200,9 @@ public class SpielView implements ActionListener{
 		if (answer != -1) {
 			if(answer == controller.getAktuelleFrage().getRichtigeAntwort()) {
 				correct_guesses++;
-				answerFeedback.setText("Richtiiiig du Champ");
+				answerFeedback.setText(userFeedback.answerCorrect);
 			}else {
-				answerFeedback.setText("Falsch du Nichtskönner");
+				answerFeedback.setText(userFeedback.answerWrong);
 			}
 			displayAnswer();
 		}
@@ -226,21 +218,22 @@ public class SpielView implements ActionListener{
 		frame.add(answerFeedback);
 		
 		int richtig = controller.getAktuelleFrage().getRichtigeAntwort();
-		if(richtig != 0)
-		answerLabelA.setForeground(new Color(255,0,0));
+		
+		if(richtig == 0) 
+			buttonA.setBackground(new Color(124, 252, 0));
+	
+		if(richtig == 1) 
+			buttonB.setBackground(new Color(124, 252, 0));
 		
 		
-		if(richtig != 1)
-		answerLabelB.setForeground(new Color(255,0,0));	
-		
-		// Timer, wartet nach Antwort 2sek, bis nächste Aufgabe kommt bzw. Schriftfarbe sich wieder ändert
+		// Timer, wartet nach Antwort 2	sek, bis nächste Aufgabe kommt bzw. Schriftfarbe sich wieder ändert
 		Timer pause = new Timer(2000, new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				answerLabelA.setForeground(new Color(25,255,0));
-				answerLabelB.setForeground(new Color(25,255,0));
-				
-				answerFeedback.setText("Weiter geht's");
+				buttonA.setBackground(new Color(220, 220, 220));
+				buttonB.setBackground(new Color(220, 220, 220));
+
+				answerFeedback.setText(userFeedback.continueQuiz);
 				answer = ' ';
 				seconds= 10;
 				secondsLeft.setText(String.valueOf(seconds));
@@ -267,8 +260,6 @@ public class SpielView implements ActionListener{
 		
 		textfield.setText("RESULTATE:");
 		textarea.setText("Du heschs gschafft aber suuf wiiter!");
-		answerLabelA.setText("");
-		answerLabelB.setText("");
 		
 		numberRight.setText("(" + correct_guesses + "/" + controller.getAnzahlFragen() + ")");
 		percentage.setText(result + "%");
