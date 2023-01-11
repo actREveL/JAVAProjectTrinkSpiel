@@ -44,14 +44,14 @@ public class SpielView implements ActionListener{
 	private JTextArea textarea = new JTextArea();
 	private JButton buttonA = new JButton();
 	private JButton buttonB = new JButton();
-	private JLabel answerLabelA = new JLabel();
-	private JLabel answerLabelB = new JLabel();
 	private JTextField answerFeedback = new JTextField();
 	private JLabel timeLabel = new JLabel();
 	private JLabel secondsLeft = new JLabel();
 	private JTextField numberRight = new JTextField();
 	private JTextField percentage = new JTextField();
 	private JLabel pictureDisplay = new JLabel();
+	private JButton buttonStopGame = new JButton();
+
 	ImageIcon imageResult = new ImageIcon("src/ch/fhgr/java/trinkspiel/ressources/results.png");
 	
 	// Timer, der runterzählt
@@ -70,7 +70,7 @@ public class SpielView implements ActionListener{
 		//Frame
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1200,800);
-		frame.getContentPane().setBackground(new Color(185,219,232));//Hintergrund noch ändern?
+		frame.getContentPane().setBackground(new Color(185,219,232));
 		frame.setLayout(null);
 		frame.setResizable(false);
 		frame.setLocationRelativeTo(null);
@@ -89,7 +89,7 @@ public class SpielView implements ActionListener{
 		textarea.setBounds(100,100,1000,100);
 		textarea.setLineWrap(true);
 		textarea.setWrapStyleWord(true);
-		//textarea.setBackground(new Color(88,152,176));
+		textarea.setBackground(new Color(88,152,176));
 		textarea.setForeground(new Color(0,0,0));
 		textarea.setFont(new Font("Arial", Font.PLAIN, 30));
 		textarea.setBorder(BorderFactory.createEmptyBorder());
@@ -113,6 +113,13 @@ public class SpielView implements ActionListener{
 		buttonB.setFocusable(false);
 		buttonB.addActionListener(this);
 		
+		buttonStopGame.setBounds(200,500,800,80);
+		buttonStopGame.setFont(new Font("Arial", Font.PLAIN, 25));
+		buttonStopGame.setText("End Game");
+		buttonStopGame.setFocusable(false);
+		buttonStopGame.addActionListener(this);
+
+		
 		// Timer
 		secondsLeft.setBounds(1000,600,200,200);
 		secondsLeft.setBackground(new Color(80,94,99));
@@ -128,15 +135,14 @@ public class SpielView implements ActionListener{
 		timeLabel.setForeground(new Color (255,0,0));
 		timeLabel.setFont(new Font("Arial", Font.BOLD, 20));
 		timeLabel.setHorizontalAlignment(JTextField.CENTER);
-		timeLabel.setText("Mach vorwärts!!");
+		timeLabel.setText(userFeedback.timerComment);
 		
 		//Antwort Feedback
 		answerFeedback.setBounds(200,385,800,80);
 		answerFeedback.setBackground(new Color(80,94,99));
 		answerFeedback.setForeground(new Color(185,219,232));
-		answerFeedback.setFont(new Font("Arial", Font.PLAIN, 30));
+		answerFeedback.setFont(new Font("Arial", Font.PLAIN, 25));
 		answerFeedback.setHorizontalAlignment(JTextField.CENTER);
-		
 		
 		numberRight.setBounds(400,225,400,100);
 		numberRight.setBackground(new Color(80,94,99));
@@ -158,8 +164,7 @@ public class SpielView implements ActionListener{
 		
 		frame.add(timeLabel);
 		frame.add(secondsLeft);
-		//frame.add(answerLabelA);
-		//frame.add(answerLabelB);
+		frame.add(buttonStopGame);
 		frame.add(buttonA);
 		frame.add(buttonB);
 		frame.add(textarea);
@@ -189,6 +194,10 @@ public class SpielView implements ActionListener{
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		
+		if(e.getSource()==buttonStopGame) {
+			results();
+		}
+		
 		answer = -1;
 		if(e.getSource()==buttonA) {
 			answer = 0;
@@ -202,6 +211,7 @@ public class SpielView implements ActionListener{
 				correct_guesses++;
 				answerFeedback.setText(userFeedback.answerCorrect);
 			}else {
+				
 				answerFeedback.setText(userFeedback.answerWrong);
 			}
 			displayAnswer();
@@ -211,6 +221,7 @@ public class SpielView implements ActionListener{
 	public void displayAnswer() {
 		// wenn Timer bei 0 = falsch
 		timer.stop();
+		
 		
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
@@ -253,13 +264,15 @@ public class SpielView implements ActionListener{
 		answerFeedback.setVisible(false);
 		secondsLeft.setVisible(false);
 		timeLabel.setVisible(false);
+		buttonStopGame.setVisible(false);
 		pictureDisplay.setIcon(imageResult);
+		//SpielAblaufController.counter = 0;
 		
 		result = (int)((correct_guesses/(double)controller.getAnzahlFragen())*100);
 		
 		
-		textfield.setText("RESULTATE:");
-		textarea.setText("Du heschs gschafft aber suuf wiiter!");
+		textfield.setText(userFeedback.resultText);
+		textarea.setText(userFeedback.resultComment);
 		
 		numberRight.setText("(" + correct_guesses + "/" + controller.getAnzahlFragen() + ")");
 		percentage.setText(result + "%");
@@ -269,5 +282,3 @@ public class SpielView implements ActionListener{
 		frame.add(pictureDisplay);
 	}
 }
-
-//Youtube-Channel -> https://www.youtube.com/watch?v=wk1Fbqh7Tew
