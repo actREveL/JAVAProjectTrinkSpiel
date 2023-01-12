@@ -8,9 +8,9 @@ public class userFeedback {
 	public static String timerComment = "Mach vorwärts!!";
 	public static String resultText = "RESULTATE";
 	public static String resultComment = "Du heschs gschafft aber suuf wiiter!";
-	public static String endGame = "End Game";
-	public static String pauseGame = "Pause";
-	public static String continueGame = "Continue Game";
+	public static String endGamebutton = "End Game";
+	public static String pauseGamebutton = "Pause";
+	public static String continueGamebutton = "Continue Game";
 
 }
 

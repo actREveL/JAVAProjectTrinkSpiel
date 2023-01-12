@@ -118,20 +118,20 @@ public class SpielView implements ActionListener{
 		
 		buttonStopGame.setBounds(600,500,400,80);
 		buttonStopGame.setFont(new Font("Arial", Font.PLAIN, 25));
-		buttonStopGame.setText(userFeedback.endGame);
+		buttonStopGame.setText(userFeedback.endGamebutton);
 		buttonStopGame.setFocusable(false);
 		buttonStopGame.addActionListener(this);
 		
 		buttonPauseGame.setBounds(200,500,400,80);
 		buttonPauseGame.setFont(new Font("Arial", Font.PLAIN, 25));
-		buttonPauseGame.setText(userFeedback.pauseGame);
+		buttonPauseGame.setText(userFeedback.pauseGamebutton);
 		buttonPauseGame.setFocusable(false);
 		buttonPauseGame.addActionListener(this);
 		
 		buttonContinueGame.setVisible(false);
 		buttonContinueGame.setBounds(200,600,400,80);
 		buttonContinueGame.setFont(new Font("Arial", Font.PLAIN, 25));
-		buttonContinueGame.setText(userFeedback.continueGame);
+		buttonContinueGame.setText(userFeedback.continueGamebutton);
 		buttonContinueGame.setFocusable(false);
 		buttonContinueGame.addActionListener(this);
 
@@ -208,7 +208,7 @@ public class SpielView implements ActionListener{
 		}
 	}
 	
-	public void actionPerformed(ActionEvent e) { //when someone presses the button (answer)
+	public void actionPerformed(ActionEvent e) { //when someone presses a button
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		
@@ -220,6 +220,7 @@ public class SpielView implements ActionListener{
 		if(e.getSource()==buttonPauseGame) {
 			timer.stop();
 			buttonContinueGame.setVisible(true);
+			buttonPauseGame.setEnabled(false);
 			
 		}
 		
@@ -228,6 +229,7 @@ public class SpielView implements ActionListener{
 			buttonB.setEnabled(true);
 			nextQuestion();
 			buttonContinueGame.setVisible(false);
+			buttonPauseGame.setEnabled(true);
 
 		}
 		
@@ -255,7 +257,7 @@ public class SpielView implements ActionListener{
 		// wenn Timer bei 0 = falsch
 		timer.stop();
 		
-		
+		// Antwortbuttons können nicht mehr gedrückt werden
 		buttonA.setEnabled(false);
 		buttonB.setEnabled(false);
 		
