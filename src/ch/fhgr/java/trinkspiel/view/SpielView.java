@@ -36,7 +36,7 @@ public class SpielView implements ActionListener{
 	private int index;
 	private int correct_guesses = 0;
 	private int result;
-	int seconds = 10;
+	private int seconds = 10;
 	
 	// TO DO: alles was noch angefasst wird private machen und alles andere kann runter in SpielView
 	private JFrame frame = new JFrame();
@@ -49,13 +49,12 @@ public class SpielView implements ActionListener{
 	private JLabel secondsLeft = new JLabel();
 	private JTextField numberRight = new JTextField();
 	private JTextField percentage = new JTextField();
-	private JLabel pictureDisplay = new JLabel();
 	private JButton buttonStopGame = new JButton();
 	private JButton buttonPauseGame = new JButton();
 	private JButton buttonContinueGame = new JButton();
-
-
-	ImageIcon imageResult = new ImageIcon("src/ch/fhgr/java/trinkspiel/ressources/results.png");
+	
+	private JLabel pictureDisplayWin = new JLabel();
+	private ImageIcon imageGoodResult = new ImageIcon("/Users/silyr/git/JAVAProjectTrinkSpiel/bin/ch/fhgr/java/ressources/goodResult.png");
 	
 	// Timer, der runterzählt
 	Timer timer = new Timer(1000, new ActionListener() {
@@ -176,7 +175,8 @@ public class SpielView implements ActionListener{
 		percentage.setHorizontalAlignment(JTextField.CENTER);
 		percentage.setEditable(false);
 		
-		pictureDisplay.setBounds(450,450,300,300);
+		pictureDisplayWin.setBounds(450,450,300,300);
+		pictureDisplayWin.setIcon(imageGoodResult);
 		
 		frame.add(timeLabel);
 		frame.add(secondsLeft);
@@ -302,10 +302,8 @@ public class SpielView implements ActionListener{
 		buttonStopGame.setVisible(false);
 		buttonPauseGame.setVisible(false);
 		buttonContinueGame.setVisible(false);
-		pictureDisplay.setIcon(imageResult);
 		
 		result = (int)((correct_guesses/(double)controller.getAnzahlFragen())*100);
-		
 		
 		textfield.setText(userFeedback.resultText);
 		textarea.setText(userFeedback.resultComment);
@@ -313,8 +311,9 @@ public class SpielView implements ActionListener{
 		numberRight.setText("(" + correct_guesses + "/" + controller.getAnzahlFragen() + ")");
 		percentage.setText(result + "%");
 		
+		frame.add(pictureDisplayWin);
 		frame.add(numberRight);
 		frame.add(percentage);
-		frame.add(pictureDisplay);
+			
 	}
 }
