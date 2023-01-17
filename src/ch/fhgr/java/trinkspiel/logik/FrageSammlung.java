@@ -6,9 +6,7 @@ public class FrageSammlung {
 	
 	private ArrayList<Frage> fragen = new ArrayList<Frage>();
 	
-	public FrageSammlung() {
-		
-	}
+	public FrageSammlung() {}
 
 	public FrageSammlung(ArrayList<Frage> fragen) {
 		this.fragen = fragen;
@@ -33,5 +31,4 @@ public class FrageSammlung {
 	public Frage selectQuestion(int index) {
 		return fragen.get(index);
 	}
-
 }

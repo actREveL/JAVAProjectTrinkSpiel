@@ -22,8 +22,7 @@ public class SpielAblaufController {
 	public SpielAblaufController() {
 		FrageInitialisator fi = new FrageInitialisator();
 		fi.initaliseTestQuestions();
-		this.fragen = fi.getFragen();	
-				
+		this.fragen = fi.getFragen();			
 	}
 	
 	public Frage getAktuelleFrage() {
@@ -65,6 +64,4 @@ public class SpielAblaufController {
 		this.aktuelleFrage = fragen.selectQuestion(i);
 		return this.aktuelleFrage;
 	}
-	
-	
 }

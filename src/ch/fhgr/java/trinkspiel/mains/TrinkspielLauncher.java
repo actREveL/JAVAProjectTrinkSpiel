@@ -7,5 +7,4 @@ public class TrinkspielLauncher {
 	public static void main(String[] args) {
 		SpielView spiel = new SpielView();
 	}
-
 }

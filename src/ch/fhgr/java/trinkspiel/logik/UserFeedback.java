@@ -1,6 +1,6 @@
 package ch.fhgr.java.trinkspiel.logik;
 
-public class userFeedback {
+public class UserFeedback {
 	
 	public static String answerCorrect = "Richtiiiig du Champ";
 	public static String answerWrong = "Falsch du Nichtskönner";
